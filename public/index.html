@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI画像メタデータ解析ツール</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- piexif-js ライブラリをCDNから読み込み -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/piexifjs/1.0.6/piexif.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>AI Image Metadata Viewer</h1>
+            <p>AIで生成した画像のメタ情報（プロンプト等）を解析します</p>
+        </header>
+
+        <main>
+            <div id="drop-zone">
+                <div class="drop-zone-prompt">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <p>ここにJPEG画像をドラッグ＆ドロップ</p>
+                    <p class="or-text">または</p>
+                    <button type="button" id="file-select-btn">ファイルを選択</button>
+                </div>
+                <input type="file" id="file-input" accept="image/jpeg" hidden>
+            </div>
+
+            <div id="result-area" class="hidden">
+                <div class="image-preview-wrapper">
+                    <img id="preview-image" src="#" alt="プレビュー画像">
+                </div>
+                <div class="metadata-display">
+                    <div class="metadata-item">
+                        <label for="prompt">プロンプト</label>
+                        <div class="textarea-wrapper">
+                            <textarea id="prompt" rows="6" readonly></textarea>
+                            <button class="copy-btn" data-target="prompt" title="コピー">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="metadata-item">
+                        <label for="negative-prompt">ネガティブプロンプト</label>
+                        <div class="textarea-wrapper">
+                            <textarea id="negative-prompt" rows="4" readonly></textarea>
+                            <button class="copy-btn" data-target="negative-prompt" title="コピー">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="metadata-item">
+                        <label for="other-info">その他情報</label>
+                        <div class="textarea-wrapper">
+                            <textarea id="other-info" rows="5" readonly></textarea>
+                             <button class="copy-btn" data-target="other-info" title="コピー">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" id="reset-btn">別の画像を解析</button>
+                </div>
+            </div>
+            <div id="error-message" class="hidden">
+                <p>メタデータを読み取れませんでした。AI生成のJPEG画像ではないか、メタデータが破損している可能性があります。</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
