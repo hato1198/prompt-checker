@@ -37,7 +37,7 @@
                     <div class="metadata-item">
                         <label for="prompt">プロンプト</label>
                         <div class="textarea-wrapper">
-                            <textarea id="prompt" rows="6" readonly></textarea>
+                            <textarea id="prompt" rows="5" readonly></textarea>
                             <button class="copy-btn" data-target="prompt" title="コピー">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                             </button>
@@ -46,16 +46,67 @@
                     <div class="metadata-item">
                         <label for="negative-prompt">ネガティブプロンプト</label>
                         <div class="textarea-wrapper">
-                            <textarea id="negative-prompt" rows="4" readonly></textarea>
+                            <textarea id="negative-prompt" rows="2" readonly></textarea>
                             <button class="copy-btn" data-target="negative-prompt" title="コピー">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                             </button>
                         </div>
                     </div>
+                    <div class="metadata-grid">
+                        <div class="metadata-item-grid">
+                            <label for="steps">ステップ数</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="steps" readonly>
+                                <button class="copy-btn" data-target="steps" title="コピー"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                            </div>
+                        </div>
+                        <div class="metadata-item-grid">
+                            <label for="sampler">サンプラー</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="sampler" readonly>
+                                <button class="copy-btn" data-target="sampler" title="コピー"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                            </div>
+                        </div>
+                        <div class="metadata-item-grid">
+                            <label for="cfg-scale">CFG スケール</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="cfg-scale" readonly>
+                                <button class="copy-btn" data-target="cfg-scale" title="コピー"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                            </div>
+                        </div>
+                        <div class="metadata-item-grid">
+                            <label for="seed">シード値</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="seed" readonly>
+                                <button class="copy-btn" data-target="seed" title="コピー"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                            </div>
+                        </div>
+                        <div class="metadata-item-grid">
+                            <label for="size">サイズ</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="size" readonly>
+                                <button class="copy-btn" data-target="size" title="コピー"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                            </div>
+                        </div>
+                        <div class="metadata-item-grid">
+                            <label for="clip-skip">クリップスキップ</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="clip-skip" readonly>
+                                <button class="copy-btn" data-target="clip-skip" title="コピー"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metadata-item">
+                        <label for="created-date">作成日</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="created-date" readonly>
+                            <button class="copy-btn" data-target="created-date" title="コピー"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                        </div>
+                    </div>
                     <div class="metadata-item">
                         <label for="other-info">その他情報</label>
                         <div class="textarea-wrapper">
-                            <textarea id="other-info" rows="5" readonly></textarea>
+                            <textarea id="other-info" rows="3" readonly></textarea>
                              <button class="copy-btn" data-target="other-info" title="コピー">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                             </button>

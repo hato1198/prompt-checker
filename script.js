@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const promptTextarea = document.getElementById('prompt');
     const negativePromptTextarea = document.getElementById('negative-prompt');
     const otherInfoTextarea = document.getElementById('other-info');
+    const stepsInput = document.getElementById('steps');
+    const samplerInput = document.getElementById('sampler');
+    const cfgScaleInput = document.getElementById('cfg-scale');
+    const seedInput = document.getElementById('seed');
+    const sizeInput = document.getElementById('size');
+    const clipSkipInput = document.getElementById('clip-skip');
+    const createdDateInput = document.getElementById('created-date');
     const copyBtns = document.querySelectorAll('.copy-btn');
     const resetBtn = document.getElementById('reset-btn');
     const errorMessage = document.getElementById('error-message');
@@ -46,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     copyBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const targetId = btn.dataset.target;
-            const textarea = document.getElementById(targetId);
-            navigator.clipboard.writeText(textarea.value).then(() => {
+            const element = document.getElementById(targetId);
+            navigator.clipboard.writeText(element.value).then(() => {
                 showCopiedFeedback(btn);
             }).catch(err => {
                 console.error('コピーに失敗しました', err);
@@ -149,7 +156,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
         promptTextarea.value = prompt;
         negativePromptTextarea.value = negativePrompt;
-        otherInfoTextarea.value = otherInfo;
+
+        const otherInfoMap = {};
+        if (otherInfo) {
+            const parts = otherInfo.split(', ');
+            parts.forEach(part => {
+                const [key, ...valueParts] = part.split(': ');
+                if (key && valueParts.length > 0) {
+                    otherInfoMap[key.trim()] = valueParts.join(': ').trim();
+                }
+            });
+        }
+
+        stepsInput.value = otherInfoMap['Steps'] || '';
+        samplerInput.value = otherInfoMap['Sampler'] || '';
+        cfgScaleInput.value = otherInfoMap['CFG scale'] || '';
+        seedInput.value = otherInfoMap['Seed'] || '';
+        sizeInput.value = otherInfoMap['Size'] || '';
+        clipSkipInput.value = otherInfoMap['Clip skip'] || '';
+        createdDateInput.value = otherInfoMap['Created Date'] || '';
+
+        // Display the rest of the other info
+        const remainingOtherInfo = { ...otherInfoMap };
+        delete remainingOtherInfo['Steps'];
+        delete remainingOtherInfo['Sampler'];
+        delete remainingOtherInfo['CFG scale'];
+        delete remainingOtherInfo['Seed'];
+        delete remainingOtherInfo['Size'];
+        delete remainingOtherInfo['Clip skip'];
+        delete remainingOtherInfo['Created Date'];
+
+        otherInfoTextarea.value = Object.entries(remainingOtherInfo)
+            .map(([key, value]) => `${key}: ${value}`)
+            .join(', ');
     }
 
     /**
@@ -163,6 +202,13 @@ document.addEventListener('DOMContentLoaded', () => {
         previewImage.src = '#';
         promptTextarea.value = '';
         negativePromptTextarea.value = '';
+        stepsInput.value = '';
+        samplerInput.value = '';
+        cfgScaleInput.value = '';
+        seedInput.value = '';
+        sizeInput.value = '';
+        clipSkipInput.value = '';
+        createdDateInput.value = '';
         otherInfoTextarea.value = '';
     }
 

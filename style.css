@@ -141,6 +141,39 @@ main {
     gap: 1.5rem;
 }
 
+.metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.metadata-item-grid label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper input {
+    width: 100%;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.8rem;
+    color: var(--text-color);
+    font-family: 'Noto Sans JP', monospace;
+    font-size: 0.95rem;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
 .metadata-item label {
     display: block;
     margin-bottom: 0.5rem;
@@ -148,11 +181,13 @@ main {
     color: var(--secondary-color);
 }
 
-.textarea-wrapper {
+.textarea-wrapper,
+.input-wrapper {
     position: relative;
 }
 
-textarea {
+textarea,
+.input-wrapper input {
     width: 100%;
     background-color: var(--bg-color);
     border: 1px solid var(--border-color);
@@ -164,7 +199,8 @@ textarea {
     resize: vertical;
 }
 
-textarea:focus {
+textarea:focus,
+.input-wrapper input:focus {
     outline: none;
     border-color: var(--primary-color);
 }
