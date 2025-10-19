@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const seedInput = document.getElementById('seed');
     const sizeInput = document.getElementById('size');
     const clipSkipInput = document.getElementById('clip-skip');
-    const createdDateInput = document.getElementById('created-date');
+    const modelInput = document.getElementById('model');
     const copyBtns = document.querySelectorAll('.copy-btn');
     const resetBtn = document.getElementById('reset-btn');
     const errorMessage = document.getElementById('error-message');
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
         seedInput.value = otherInfoMap['Seed'] || '';
         sizeInput.value = otherInfoMap['Size'] || '';
         clipSkipInput.value = otherInfoMap['Clip skip'] || '';
-        createdDateInput.value = otherInfoMap['Created Date'] || '';
+        modelInput.value = otherInfoMap['Model'] || '';
 
         // Display the rest of the other info
         const remainingOtherInfo = { ...otherInfoMap };
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         delete remainingOtherInfo['Seed'];
         delete remainingOtherInfo['Size'];
         delete remainingOtherInfo['Clip skip'];
-        delete remainingOtherInfo['Created Date'];
+        delete remainingOtherInfo['Model'];
 
         otherInfoTextarea.value = Object.entries(remainingOtherInfo)
             .map(([key, value]) => `${key}: ${value}`)
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
         seedInput.value = '';
         sizeInput.value = '';
         clipSkipInput.value = '';
-        createdDateInput.value = '';
+        modelInput.value = '';
         otherInfoTextarea.value = '';
     }
 
