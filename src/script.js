@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const clipSkipInput = document.getElementById('clip-skip');
     const copyBtns = document.querySelectorAll('.copy-btn');
     const resetBtn = document.getElementById('reset-btn');
-    const errorMessage = document.getElementById('error-message');
+    const errorModal = document.getElementById('error-modal');
+    const errorModalMessage = document.getElementById('error-modal-message');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
 
     // --- イベントリスナー設定 ---
 
@@ -65,7 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // リセットボタン
     resetBtn.addEventListener('click', resetUI);
 
+    // モーダル閉じるボタン
+    modalCloseBtn.addEventListener('click', closeModal);
+    errorModal.addEventListener('click', (e) => {
+        if (e.target === errorModal) {
+            closeModal();
+        }
+    });
+
     // --- 関数定義 ---
+
+    /**
+     * モーダルを閉じる
+     */
+    function closeModal() {
+        resetUI();
+    }
 
     /**
      * ファイルを処理する
@@ -77,7 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (file.type.match('image/png')) {
             handlePngFile(file);
         } else {
-            alert('JPEGまたはPNG画像を選択してください。');
+            const isJapanese = document.documentElement.lang === 'ja';
+            const message = isJapanese 
+                ? 'JPEGまたはPNG画像を選択してください。'
+                : 'Please select a JPEG or PNG image.';
+            showError(message);
             return;
         }
     }
@@ -242,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function resetUI() {
         dropZone.classList.remove('hidden');
         resultArea.classList.add('hidden');
-        errorMessage.classList.add('hidden');
+        errorModal.classList.add('hidden');
         fileInput.value = ''; // 同じファイルを選択できるようにリセット
         previewImage.src = '#';
         promptTextarea.value = '';
@@ -263,19 +284,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function showResultArea() {
         dropZone.classList.add('hidden');
         resultArea.classList.remove('hidden');
-        errorMessage.classList.add('hidden');
     }
 
     /**
-     * エラーメッセージを表示する
+     * エラーメッセージをモーダルで表示する
+     * @param {string} [message] - 表示するメッセージ。省略時はデフォルトメッセージ。
      */
-    function showError() {
-        dropZone.classList.add('hidden');
-        resultArea.classList.add('hidden');
-        errorMessage.classList.remove('hidden');
+    function showError(message) {
+        const isJapanese = document.documentElement.lang === 'ja';
+        const defaultMessage = isJapanese
+            ? 'メタデータを読み取れませんでした。AI生成の画像ではないか、メタデータが破損している可能性があります。'
+            : 'Could not read metadata. The image may not be AI-generated or the metadata may be corrupted.';
         
-        // 5秒後にリセット
-        setTimeout(resetUI, 5000);
+        errorModalMessage.textContent = message || defaultMessage;
+        
+        resultArea.classList.add('hidden');
+        errorModal.classList.remove('hidden');
     }
     
     /**

@@ -120,10 +120,14 @@
                     <button type="button" id="reset-btn">別の画像を解析</button>
                 </div>
             </div>
-            <div id="error-message" class="hidden">
-                <p>メタデータを読み取れませんでした。AI生成の画像ではないか、メタデータが破損している可能性があります。</p>
-            </div>
         </main>
+    </div>
+
+    <div id="error-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+            <p id="error-modal-message"></p>
+        </div>
     </div>
 
     <script src="/script.js" type="module"></script>
