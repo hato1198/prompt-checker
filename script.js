@@ -72,11 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {File} file 
      */
     function handleFile(file) {
-        if (!file.type.match('image/jpeg')) {
-            alert('JPEG画像を選択してください。');
+        if (file.type.match('image/jpeg')) {
+            handleJpegFile(file);
+        } else if (file.type.match('image/png')) {
+            handlePngFile(file);
+        } else {
+            alert('JPEGまたはPNG画像を選択してください。');
             return;
         }
+    }
 
+    /**
+     * JPEGファイルを処理する
+     * @param {File} file 
+     */
+    function handleJpegFile(file) {
         const reader = new FileReader();
 
         reader.onload = (e) => {
@@ -91,6 +101,41 @@ document.addEventListener('DOMContentLoaded', () => {
                     // UserCommentは通常、最初の8バイトが文字コード指定（例: "UNICODE\0"）、残りがデータ
                     const decodedComment = decodeUserComment(userComment);
                     parseAndDisplayMetadata(decodedComment);
+                    showResultArea();
+                } else {
+                    showError();
+                }
+            } catch (error) {
+                console.error('メタデータの読み取りに失敗しました:', error);
+                showError();
+            }
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    /**
+     * PNGファイルを処理する
+     * @param {File} file 
+     */
+    async function handlePngFile(file) {
+        const reader = new FileReader();
+
+        reader.onload = async (e) => {
+            const imageDataUrl = e.target.result;
+            previewImage.src = imageDataUrl;
+
+            try {
+                const tags = await ExifReader.load(file);
+                console.log(tags);
+
+                // Stable Diffusion a1111
+                if (tags.parameters) {
+                    parseAndDisplayMetadata(tags.parameters.description);
+                    showResultArea();
+                // NovelAI
+                } else if (tags.Description) {
+                    parseAndDisplayMetadata(tags.Description.description);
                     showResultArea();
                 } else {
                     showError();
