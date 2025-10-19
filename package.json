@@ -1,0 +1,27 @@
+{
+  "name": "prompt-viewer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hato1198/prompt-viewer"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hato1198/prompt-viewer/issues"
+  },
+  "homepage": "https://github.com/hato1198/prompt-viewer#readme",
+  "description": "",
+  "devDependencies": {
+    "vite": "^7.0.4",
+    "vite-plugin-html-minifier-terser": "^3.8.0"
+  }
+}
