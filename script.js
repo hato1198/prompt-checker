@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const promptTextarea = document.getElementById('prompt');
     const negativePromptTextarea = document.getElementById('negative-prompt');
     const otherInfoTextarea = document.getElementById('other-info');
+    const modelInput = document.getElementById('model');
     const stepsInput = document.getElementById('steps');
     const samplerInput = document.getElementById('sampler');
     const cfgScaleInput = document.getElementById('cfg-scale');
     const seedInput = document.getElementById('seed');
     const sizeInput = document.getElementById('size');
     const clipSkipInput = document.getElementById('clip-skip');
-    const modelInput = document.getElementById('model');
     const copyBtns = document.querySelectorAll('.copy-btn');
     const resetBtn = document.getElementById('reset-btn');
     const errorMessage = document.getElementById('error-message');
@@ -213,23 +213,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        modelInput.value = otherInfoMap['Model'] || '';
         stepsInput.value = otherInfoMap['Steps'] || '';
         samplerInput.value = otherInfoMap['Sampler'] || '';
         cfgScaleInput.value = otherInfoMap['CFG scale'] || '';
         seedInput.value = otherInfoMap['Seed'] || '';
         sizeInput.value = otherInfoMap['Size'] || '';
         clipSkipInput.value = otherInfoMap['Clip skip'] || '';
-        modelInput.value = otherInfoMap['Model'] || '';
 
         // Display the rest of the other info
         const remainingOtherInfo = { ...otherInfoMap };
+        delete remainingOtherInfo['Model'];
         delete remainingOtherInfo['Steps'];
         delete remainingOtherInfo['Sampler'];
         delete remainingOtherInfo['CFG scale'];
         delete remainingOtherInfo['Seed'];
         delete remainingOtherInfo['Size'];
         delete remainingOtherInfo['Clip skip'];
-        delete remainingOtherInfo['Model'];
 
         otherInfoTextarea.value = Object.entries(remainingOtherInfo)
             .map(([key, value]) => `${key}: ${value}`)
@@ -247,13 +247,13 @@ document.addEventListener('DOMContentLoaded', () => {
         previewImage.src = '#';
         promptTextarea.value = '';
         negativePromptTextarea.value = '';
+        modelInput.value = '';
         stepsInput.value = '';
         samplerInput.value = '';
         cfgScaleInput.value = '';
         seedInput.value = '';
         sizeInput.value = '';
         clipSkipInput.value = '';
-        modelInput.value = '';
         otherInfoTextarea.value = '';
     }
 
