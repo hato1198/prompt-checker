@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- 文字コード・レスポンシブ対応 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ファビコン -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+
+    <!-- ページタイトル -->
     <title>AI画像メタデータ解析ツール</title>
+
+    <!-- メインスタイル -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- 検索エンジン・SNS向けメタ情報 -->
     <meta name="description" content="AIで生成した画像のメタ情報（プロンプト等）を解析します。" />
     <link rel="canonical" href="https://prompt-viewer-online.vercel.app/" />
-    <link rel="stylesheet" href="/style.css">
+
     <link rel="alternate" hreflang="ja" href="https://prompt-viewer-online.vercel.app/ja/">
     <link rel="alternate" hreflang="en" href="https://prompt-viewer-online.vercel.app/">
     <link rel="alternate" hreflang="x-default" href="https://prompt-viewer-online.vercel.app/">
-    <!-- piexif-js ライブラリをCDNから読み込み -->
+
+    <!-- piexif-js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/piexifjs/1.0.6/piexif.min.js"></script>
-    <!-- exifreader ライブラリをCDNから読み込み -->
+
+    <!-- exifreader -->
     <script src="https://cdn.jsdelivr.net/npm/exifreader"></script>
+
+    <!-- Vercel Web Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
