@@ -98,7 +98,7 @@ main {
 
 #file-select-btn, #reset-btn {
     background-color: var(--primary-color);
-    color: var(--bg-color);
+    color: var(--text-color);
     border: none;
     border-radius: 8px;
     padding: 0.8rem 1.5rem;
